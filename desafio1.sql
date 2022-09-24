@@ -6,7 +6,7 @@ USE SpotifyClone;
 CREATE TABLE SpotifyClone.plan(
 	plan_id INT AUTO_INCREMENT PRIMARY KEY,
     type VARCHAR(30) NOT NULL UNIQUE,
-    price DOUBLE NOT NULL
+    price DECIMAL(5,2) NOT NULL
 );
 
 INSERT INTO plan (type, price)
@@ -21,43 +21,22 @@ CREATE TABLE SpotifyClone.user(
     name VARCHAR(255) NOT NULL,
     age INT NOT NULL,
     plan_id INT,
+    plan_sign_date DATE NOT NULL,
     FOREIGN KEY (plan_id) REFERENCES plan(plan_id)
 );
 
-INSERT INTO user (name, age, plan_id)
+INSERT INTO user (name, age, plan_id, plan_sign_date)
 VALUES
-('Barbara Liskov', 82, 1),
-('Robert Cecil Martin', 58, 1),
-('Ada Lovelace', 37, 2),
-('Martin Fowler', 46, 2),
-('Sandi Metz', 58, 2),
-('Paulo Freire', 19, 3),
-('Bell Hooks', 26, 3),
-('Christopher Alexander', 85, 4),
-('Judith Butler', 45, 4),
-('Jorge Amado', 58, 4);
-
-CREATE TABLE SpotifyClone.user_plan(
-	user_id INTEGER,
-	plan_id INTEGER,
-    sign_date DATE NOT NULL,
-	CONSTRAINT PRIMARY KEY(user_id, plan_id),
-    FOREIGN KEY (user_id) REFERENCES user (user_id),
-    FOREIGN KEY (plan_id) REFERENCES plan (plan_id)
-);
-
-INSERT INTO user_plan (user_id, plan_id, sign_date)
-VALUES
-(1, 1, '2019-10-20'),
-(2, 1, '2017-01-06'),
-(3, 2, '2017-12-30'),
-(4, 2, '2017-01-17'),
-(5, 2, '2018-04-29'),
-(6, 3, '2018-02-14'),
-(7, 3, '2018-01-05'),
-(8, 4, '2019-06-05'),
-(9, 4, '2020-05-13'),
-(10, 4, '2017-02-17');
+('Barbara Liskov', 82, 1, '2019-10-20'),
+('Robert Cecil Martin', 58, 1,'2017-01-06'),
+('Ada Lovelace', 37, 2, '2017-12-30'),
+('Martin Fowler', 46, 2, '2017-01-17'),
+('Sandi Metz', 58, 2, '2018-04-29'),
+('Paulo Freire', 19, 3, '2018-02-14'),
+('Bell Hooks', 26, 3, '2018-01-05'),
+('Christopher Alexander', 85, 4, '2019-06-05'),
+('Judith Butler', 45, 4, '2020-05-13'),
+('Jorge Amado', 58, 4, '2017-02-17');
 
 CREATE TABLE SpotifyClone.artist(
 	artist_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -141,7 +120,7 @@ VALUES
 CREATE TABLE SpotifyClone.user_history(
 	user_id INTEGER,
 	song_id INTEGER,
-    date_played DATE NOT NULL,
+    date_played DATETIME NOT NULL,
 	CONSTRAINT PRIMARY KEY(user_id, song_id),
     FOREIGN KEY (user_id) REFERENCES user (user_id),
     FOREIGN KEY (song_id) REFERENCES song (song_id)
