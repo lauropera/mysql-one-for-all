@@ -5,11 +5,11 @@ USE SpotifyClone;
 
 CREATE TABLE SpotifyClone.plan(
 	plan_id INT AUTO_INCREMENT PRIMARY KEY,
-    type VARCHAR(30) NOT NULL UNIQUE,
+    plan_name VARCHAR(30) NOT NULL UNIQUE,
     price DECIMAL(5,2) NOT NULL
 );
 
-INSERT INTO plan (type, price)
+INSERT INTO plan (plan_name, price)
 VALUES
 ('gratuito', 0.00),
 ('familiar', 7.99),
@@ -18,14 +18,14 @@ VALUES
 
 CREATE TABLE SpotifyClone.user(
 	user_id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
+    user_name VARCHAR(255) NOT NULL,
     age INT NOT NULL,
     plan_id INT,
     plan_sign_date DATE NOT NULL,
     FOREIGN KEY (plan_id) REFERENCES plan(plan_id)
 );
 
-INSERT INTO user (name, age, plan_id, plan_sign_date)
+INSERT INTO user (user_name, age, plan_id, plan_sign_date)
 VALUES
 ('Barbara Liskov', 82, 1, '2019-10-20'),
 ('Robert Cecil Martin', 58, 1,'2017-01-06'),
@@ -40,10 +40,10 @@ VALUES
 
 CREATE TABLE SpotifyClone.artist(
 	artist_id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL UNIQUE
+    artist_name VARCHAR(255) NOT NULL UNIQUE
 );
 
-INSERT INTO artist (name)
+INSERT INTO artist (artist_name)
 VALUES
 ('Beyoncé'),
 ('Queen'),
@@ -54,13 +54,13 @@ VALUES
 
 CREATE TABLE SpotifyClone.album(
 	album_id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL UNIQUE,
+    album_name VARCHAR(255) NOT NULL UNIQUE,
     release_year YEAR NOT NULL,
     artist_id INT,
 	FOREIGN KEY (artist_id) REFERENCES artist (artist_id)
 );
 
-INSERT INTO album (name, release_year, artist_id)
+INSERT INTO album (album_name, release_year, artist_id)
 VALUES
 ('Renaissance', 2022, 1),
 ('Jazz', 1978, 2),
@@ -73,13 +73,13 @@ VALUES
 
 CREATE TABLE SpotifyClone.song(
 	song_id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL UNIQUE,
-    length INT NOT NULL,
+    song_name VARCHAR(255) NOT NULL UNIQUE,
+    song_length INT NOT NULL,
     album_id INT,
 	FOREIGN KEY (album_id) REFERENCES album (album_id)
 );
 
-INSERT INTO song (name, length, album_id)
+INSERT INTO song (song_name, song_length, album_id)
 VALUES
 ('BREAK MY SOUL', 279, 1),
 ('VIRGO’S GROOVE', 369, 1),

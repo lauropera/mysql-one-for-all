@@ -1,11 +1,11 @@
 SELECT
-name AS nome_musica,
+song_name AS nome_musica,
 CASE
-	WHEN name LIKE '%Bard%' THEN REPLACE(name, 'Bard', 'QA')
-	WHEN name LIKE '%Amar%' THEN REPLACE(name, 'Amar', 'Code Review')
-	WHEN name LIKE '%Pais%' THEN REPLACE(name, 'Pais', 'Pull Requests')
-	WHEN name LIKE '%SOUL%' THEN REPLACE(name, 'SOUL', 'CODE')
-	WHEN name LIKE '%SUPERSTAR%' THEN REPLACE(name, 'SUPERSTAR', 'SUPERDEV')
+	WHEN song_name LIKE '%Bard%' THEN REPLACE(song_name, 'Bard', 'QA')
+	WHEN song_name LIKE '%Amar%' THEN REPLACE(song_name, 'Amar', 'Code Review')
+	WHEN song_name LIKE '%Pais%' THEN REPLACE(song_name, 'Pais', 'Pull Requests')
+	WHEN song_name LIKE '%SOUL%' THEN REPLACE(song_name, 'SOUL', 'CODE')
+	WHEN song_name LIKE '%SUPERSTAR%' THEN REPLACE(song_name, 'SUPERSTAR', 'SUPERDEV')
 END AS novo_nome
 FROM SpotifyClone.song
 HAVING nome_musica <> novo_nome
