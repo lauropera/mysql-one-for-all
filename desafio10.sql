@@ -7,5 +7,5 @@ ON h.song_id = s.song_id
 INNER JOIN SpotifyClone.user AS u
 ON h.user_id = u.user_id
 WHERE u.plan_id = 1 OR u.plan_id = 4
-GROUP BY s.song_name
+GROUP BY s.song_id
 ORDER BY nome;
