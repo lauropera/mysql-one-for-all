@@ -1,4 +1,4 @@
-# 🐬 MySQL All For One
+# 🐬 MySQL One For All
 
 <br />
 
